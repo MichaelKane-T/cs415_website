@@ -1,13 +1,8 @@
 import React from "react";
-import userImage from "../assets/userImage.jpeg";
 import { useNavigate } from "react-router";
 
 function Hero() {
-  const backgroundImageStyle = {
-    backgroundImage: `url(${userImage})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
+
   //function to handle button on click
   const navigate = useNavigate();
   const handleButtonClick = () => {

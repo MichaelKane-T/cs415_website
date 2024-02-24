@@ -5,14 +5,9 @@ import { MdHome, MdInfo, MdEmail } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import logo from "../assets/logo.png";
 
-const navItems = ["Home", "Profile", "Module1", "Module2"];
-const navRoutes = ["/",  "/user-profile", "/module1", "/module2"];
-
-  
 
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [nav, setNav] = useState(true);
 
   function handleNav() {
@@ -37,7 +32,7 @@ export default function Navbar() {
         </li>
         <li className="text-[#4f99c6] p-4 hover:scale-110 duration-200 flex justify-between items-center gap-1">
           <MdInfo size={20} />
-          <Link to="/user-profile">Profile</Link>
+          <Link to="/userprofile">Profile</Link>
         </li>
         <li className="text-[#4f99c6] p-4 hover:scale-110 duration-200 flex justify-between items-center gap-1">
           <LuLayoutDashboard size={20} /> <Link to="/Dashboard">Dashboard</Link>

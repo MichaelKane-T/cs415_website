@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -11,12 +11,12 @@ const UserProfile = () => {
   const [phones, setPhones] = useState([]);
   const [infoColumns, setInfoColumns] = useState([]);
   const [info, setInfo] = useState([]);
-  const user_id = window.sessionStorage.getItem('user_id');
+  const user_id = window.sessionStorage.getItem("user_id");
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('auth')) navigate('/unauthorized');
+    if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
 
-    fetch(process.env.REACT_APP_API_URL_BASE +'/users/user/' + user_id)
+    fetch(process.env.REACT_APP_API_URL_BASE + "/users/user/" + user_id)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -35,9 +35,9 @@ const UserProfile = () => {
   }, [navigate, user_id]);
 
   useEffect(() => {
-    if (!window.sessionStorage.getItem('auth')) navigate('/unauthorized');
+    if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
 
-    fetch(process.env.REACT_APP_API_URL_BASE + '/addresses/user/' + user_id)
+    fetch(process.env.REACT_APP_API_URL_BASE + "/addresses/user/" + user_id)
       .then((res) => res.json())
       .then((data) => {
         console.log("......................");
@@ -60,10 +60,10 @@ const UserProfile = () => {
 
   function handleLogout(e) {
     e.preventDefault();
-    window.sessionStorage.removeItem('auth');
-    window.sessionStorage.removeItem('user_id');
-    window.sessionStorage.removeItem('token');
-    navigate('/login');
+    window.sessionStorage.removeItem("auth");
+    window.sessionStorage.removeItem("user_id");
+    window.sessionStorage.removeItem("token");
+    navigate("/login");
   }
 
   const Card = ({ title, data }) => {
@@ -77,10 +77,15 @@ const UserProfile = () => {
               className="bg-gradient-to-br from-lime-500 via-yellow-500 to-yellow-300 p-4 rounded-lg shadow-xl pl-3 hover:scale-105 duration-300 border border-green-400"
             >
               {Object.keys(item).map((key, j) => (
-                <div key={`${title.toLowerCase()}-card-${i}-${j}`} className="mb-2">
-                  <p className="font-bold text-black">{key.replaceAll('_', ' ').toUpperCase()}</p>
+                <div
+                  key={`${title.toLowerCase()}-card-${i}-${j}`}
+                  className="mb-2"
+                >
+                  <p className="font-bold text-black">
+                    {key.replaceAll("_", " ").toUpperCase()}
+                  </p>
                   {/* Check if the value is an object or array, and handle it accordingly */}
-                  {typeof item[key] === 'object' ? (
+                  {typeof item[key] === "object" ? (
                     // If it's an object or array, convert it to a string for display
                     <p className="text-black">{JSON.stringify(item[key])}</p>
                   ) : (
@@ -95,10 +100,12 @@ const UserProfile = () => {
       </div>
     );
   };
+
   
 
   return (
-    <div className="text-white px-8">
+    <div className="text-white px-8 flex flex-row justify-between">
+  
       <div className="w-screen h-screen overflow-hidden relative">
         <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative z-10">
           <div className="flex flex-col md:flex-row justify-items-end gap-4">
@@ -108,24 +115,22 @@ const UserProfile = () => {
             <div className="flex row-span-1">
               <Card title="Addresses" data={addresses} />
               {/* Add the button at the bottom */}
-              
             </div>
             {/* <div className="col-span-1">
               <Card title="Phones" data={phones} />
             </div> */}
           </div>
           <button
-                className="flex justify-center motion-safe:animate-bounce w-[200px] rounded-md font-medium my-6 mx-auto py-3 ring-1 ring-yellow-200 bg-lime-500 hover:bg-lime-300 hover:-translate-y-1 hover:scale-125 text-white hover:text-lime-700  px-4 hover:rounded transition ease-in-out delay-150 duration-300"
-                onClick={handleLogout}
-                key="logout-button"
-              >
-                Logout
-              </button>
+            className="flex justify-center motion-safe:animate-bounce w-[200px] rounded-md font-medium my-6 mx-auto py-3 ring-1 ring-yellow-200 bg-lime-500 hover:bg-lime-300 hover:-translate-y-1 hover:scale-125 text-white hover:text-lime-700  px-4 hover:rounded transition ease-in-out delay-150 duration-300"
+            onClick={handleLogout}
+            key="logout-button"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
   );
 };
-
 
 export default UserProfile;

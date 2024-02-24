@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import siteBg from "../assets/siteBg.jpeg";
 
 const LoginForm = (props) => {
     const navigate = useNavigate();
@@ -70,29 +69,18 @@ const LoginForm = (props) => {
   
   return (
     <div className="text-white px-8">
-      {/* Full-page background image */}
-      <div
-        className="w-screen h-screen overflow-hidden relative"
-        style={{
-          backgroundImage: `url(${siteBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* Dark overlay to enhance text visibility */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
 
         {/* Content container */}
         <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative z-10">
           {/* Welcome heading */}
           <div className="max-w-2xl mx-auto">
-            <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 ">
+            <div className="bg-white shadow-xl border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 ">
               <form className="space-y-6" action="#">
-                <h3 className="text-xl font-medium text-gray-900 ">Sign In </h3>
+                <h3 className="text-xl font-medium text-[#67c1f9] ">Sign In </h3>
                 <div>
                   <label
                     for="email"
-                    className="text-sm font-medium text-gray-900 block mb-2 "
+                    className="text-sm font-medium text-[#67c1f9]  block mb-2 "
                   >
                     Your email
                   </label>
@@ -104,7 +92,7 @@ const LoginForm = (props) => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                    className="bg-gray-50 border border-gray-300 text-[#9bd2f4] sm:text-sm rounded-lg focus:ring-[#4c99e7] focus:border-[#46b3f6] block w-full p-2.5 "
                     placeholder="name@company.com"
                     required={true}
                   />
@@ -112,7 +100,7 @@ const LoginForm = (props) => {
                 <div>
                   <label
                     for="password"
-                    className="text-sm font-medium text-gray-900 block mb-2 "
+                    className="text-sm font-medium text-[#67c1f9] block mb-2 "
                   >
                     Your password
                   </label>
@@ -125,7 +113,7 @@ const LoginForm = (props) => {
                       setFormData({ ...formData, password: e.target.value })
                     }
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5  "
+                    className="bg-gray-50 border border-gray-300 text-[#4c99e7] sm:text-sm rounded-lg focus:ring-[#4c99e7] focus:border-[#46b3f6] block w-full p-2.5  "
                     required={true}
                   />
                 </div>
@@ -139,21 +127,21 @@ const LoginForm = (props) => {
                         type="checkbox"
                         checked={rememberMe}
                         onChange={() => setRememberMe(!rememberMe)}
-                        className="bg-gray-50 border border-gray-300 focus:ring-3 focus:ring-[#32bb6f] h-4 w-4 rounded"
+                        className="bg-gray-50 border border-gray-300 focus:ring-3 focus:ring-[#4c99e7] h-4 w-4 rounded"
                         required={true}
                       />
                     </div>
                   </div>
                   <a
                     href={"/register"}
-                    className="text-sm text-[#32bb6f] hover:underline ml-auto"
+                    className="text-sm text-[#4c99e7] hover:underline ml-auto"
                   >
                     Lost Password?
                   </a>
                 </div>
                 <button
                   onClick={handleSubmit}
-                  className="w-full text-white bg-[#32bb6f] hover:bg-[#90e8b7] focus:ring-4 focus:ring-[#4fee97] font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                  className="w-full text-white bg-[#46b3f6] hover:bg-[#9bd2f4] hover:text-[#6593ef]  focus:ring-4 focus:ring-[#4c99e7] font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                 >
                   Login to your account
                 </button>
@@ -161,7 +149,7 @@ const LoginForm = (props) => {
                   Not registered?{" "}
                   <a
                     href={"/register"}
-                    className="text-[#32bb6f] hover:underline "
+                    className="text-[#4c99e7] hover:underline "
                   >
                     Create account
                   </a>
@@ -170,7 +158,7 @@ const LoginForm = (props) => {
             </div>
           </div>
         </div>
-      </div>
+     
     </div>
   );
 };
