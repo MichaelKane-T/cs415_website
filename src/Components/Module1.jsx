@@ -18,7 +18,7 @@ const Module1 = () => {
         setPageDescription(data.page.page_description)
     })
     .catch(error => console.error(error));
-}, []);
+}, [navigate]);
 
 const axios = require('axios');
 

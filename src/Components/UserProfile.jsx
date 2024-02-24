@@ -16,7 +16,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (!window.sessionStorage.getItem('auth')) navigate('/unauthorized');
 
-    fetch('http://localhost:8000/users/user/' + user_id)
+    fetch(process.env.REACT_APP_API_URL_BASE + '/addresses/user/' + user_id)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -37,7 +37,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (!window.sessionStorage.getItem('auth')) navigate('/unauthorized');
 
-    fetch('http://localhost:8000/addresses/user/' + user_id)
+    fetch(process.env.REACT_APP_API_URL_BASE + '/addresses/user/' + user_id)
       .then((res) => res.json())
       .then((data) => {
         console.log("......................");

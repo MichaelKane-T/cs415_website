@@ -20,7 +20,7 @@ const LoginForm = (props) => {
         password: formData.password,
       })
       
-        fetch('http://localhost:8000/login/', {
+        fetch(process.env.REACT_APP_API_URL_BASE +'/login/', {
             method: 'POST',
             body: payload,
             headers: {

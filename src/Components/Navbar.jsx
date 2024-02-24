@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import logo from "../assets/logo.png";
 
 const navItems = ["Home", "User Profile", "Module1", "Module2"];
 const navRoutes = ["/",  "/user-profile", "/module1", "/module2"];

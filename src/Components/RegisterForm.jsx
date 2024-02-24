@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import siteBg from "../assets/siteBg.jpeg";
 
 const RegisterForm = (props) => {
   const navigate = useNavigate();
@@ -27,7 +26,8 @@ const handleSubmit = async (e) => {
     const payload = JSON.stringify(formData);
   
     try {
-      const response = await fetch("http://localhost:8000/users/create_user/", {
+      //change the following to point to dev and production environments
+      const response = await fetch(process.env.REACT_APP_API_URL_BASE +'/users/create_user/', {
         method: "POST",
         body: payload,
         headers: {

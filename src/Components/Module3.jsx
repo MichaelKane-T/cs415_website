@@ -18,7 +18,7 @@ const Module3 = () => {
         setPageDescription(data.page.page_description)
     })
     .catch(error => console.error(error));
-}, []);
+}, [navigate]);
 
   return (
     <div>
