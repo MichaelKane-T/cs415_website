@@ -65,6 +65,14 @@ const LoginForm = (props) => {
         });
       });
   };
+  const handleSignUpClick = () => {
+    // Navigate to the /register route
+    navigate("/register");
+  };
+  const handleRegistrationClick = () => {
+    // Navigate to the /register route
+    navigate("/register");
+  };
 
   return (
     <div className="text-white px-8">
@@ -129,12 +137,12 @@ const LoginForm = (props) => {
                     />
                   </div>
                 </div>
-                <a
-                  href={"/register"}
-                  className="text-sm text-[#4c99e7] hover:underline ml-auto"
+                <p
+                  className="text-center block text-[#4c99e7] hover:underline ml-auto"
+                  onClick={handleSignUpClick}
                 >
                   Lost Password?
-                </a>
+                </p>
               </div>
               <button
                 onClick={handleSubmit}
@@ -144,12 +152,12 @@ const LoginForm = (props) => {
               </button>
               <div className="text-sm font-medium text-bg-[#32bb7f] ">
                 Not registered?{" "}
-                <a
-                  href={"/register"}
-                  className="text-[#4c99e7] hover:underline "
+                <span
+                  className="text-[#4c99e7] hover:underline cursor-pointer"
+                  onClick={handleRegistrationClick}
                 >
                   Create account
-                </a>
+                </span>
               </div>
             </form>
           </div>
