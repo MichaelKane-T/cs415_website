@@ -11,24 +11,45 @@ const UserProfile = () => {
   const [phones, setPhones] = useState([]);
   const [infoColumns, setInfoColumns] = useState([]);
   const [info, setInfo] = useState([]);
+  const [user, setUser] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+  const [userAddress, setUserAddress] = useState([]);
+  const [UserProfileBio, setUserProfileBio] = useState([]);
+  const [modifiedDate, setModifiedDate] = useState([]);
   const user_id = window.sessionStorage.getItem("user_id");
+  
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
+    fetch(process.env.REACT_APP_API_URL_BASE + "/users")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("***********");
+        console.log(data.users);
+        console.log("***********");
+      })
+        .catch((error) => console.error(error));
 
+  },[]);
   useEffect(() => {
     if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
 
     fetch(process.env.REACT_APP_API_URL_BASE + "/users/user/" + user_id)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         if (data.user) {
           setUserColumns(Object.keys(data.user));
           setRecord(data.user);
         }
 
         if (data.info && data.info.length > 0) {
-          setInfoColumns(Object.keys(data.info[0]));
+          // Access user_info_id from the first item in the info array
+         
           setInfo(data.info);
+          setUser(data.info[0].user)
+          setUserInfo(data.info[0].user_info_id)
+          setUserProfileBio(data.info[0].profile_bio)
+          setModifiedDate(data.info[0].modified_date)
+
         }
       })
       .catch((error) => console.error(error));
@@ -47,12 +68,16 @@ const UserProfile = () => {
         if (data.useraddress) {
           setAddressColumns(Object.keys(data.useraddress));
           setRecord(data.useraddress);
+
+          
         }
 
         if (data.useraddress && data.useraddress.length > 0) {
           setAddressColumns(Object.keys(data.useraddress[0]));
           setAddresses(data.useraddress);
-          console.log(data.useraddress);
+          console.log("+++++")
+          console.log(Object.keys(data.useraddress[0]));
+          console.log("+++++")
         }
       })
       .catch((error) => console.error(error));
@@ -100,11 +125,62 @@ const UserProfile = () => {
       </div>
     );
   };
-
+  const UserCard = ({ title, data }) => {
   
+  
+    return (
+      <div>
+        <div className="bg-gray-100">
+          <h1 className="text-2xl font-bold">{}</h1>
+          <div className="container mx-auto py-8">
+            <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+              <div className="col-span-4 sm:col-span-3">
+                <div className="bg-white shadow rounded-lg p-6">
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="https://randomuser.me/api/portraits/men/94.jpg"
+                      className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
+                      alt="User Profile"
+                    />
+                    <h1 className="text-xl font-bold">John Doe</h1>
+                    <p className="text-gray-700">Software Developer</p>
+                    <div className="mt-6 flex flex-wrap gap-4 justify-center">
+                      <a href="javascript:void(0)" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                        Contact
+                      </a>
+                      <a href="javascript:void(0)" className="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">
+                        Resume
+                      </a>
+                    </div>
+                  </div>
+                  <hr className="my-6 border-t border-gray-300" />
+                  <div className="flex flex-col">
+                    <span className="text-gray-700 uppercase font-bold tracking-wider mb-2">Skills</span>
+                    <ul>
+                      <li className="mb-2">JavaScript</li>
+                      <li className="mb-2">React</li>
+                      <li className="mb-2">Node.js</li>
+                      <li className="mb-2">HTML/CSS</li>
+                      <li className="mb-2">Tailwind CSS</li>
+                      <li className="mb-2">User ID: {userInfo}</li>
+                      <li className="mb-2">User Address: {userInfo}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-4 sm:col-span-9">
+                {/* ... rest of your code remains unchanged ... */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="text-white px-8 flex flex-row justify-between">
+    <div className="text-black px-8 flex flex-col justify-between">
+      <UserCard/>
   
       <div className="w-screen h-screen overflow-hidden relative">
         <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative z-10">

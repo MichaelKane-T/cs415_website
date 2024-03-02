@@ -85,7 +85,7 @@ const handleSubmit = async (e) => {
         <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative ">
           {/* Welcome heading */}
           <div className="max-w-2xl mx-auto">
-            <div className="bg-gradient-to-br from-lime-500 via-yellow-500 to-yellow-300 p-4 rounded-lg shadow-xl pl-3 border border-green-400 rounded-lg max-w-xl p-4 sm:p-6 lg:p-8 flex space-x-4">
+            <div className="bg-gradient-to-br from-cyan-200 via-cyan-400 to-cyan-600 shadow-2xl pl-3 border border-cyan-700 rounded-lg max-w-xl p-4 sm:p-6 lg:p-8 flex space-x-4">
               <form className="flex-grow space-y-6 " action="#">
                 <div className="flex space-x-4">
                   <div className="flex-1">
@@ -175,7 +175,7 @@ const handleSubmit = async (e) => {
                           email: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -200,7 +200,7 @@ const handleSubmit = async (e) => {
                           pass_word: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -222,7 +222,7 @@ const handleSubmit = async (e) => {
                           confirm_password: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -246,7 +246,7 @@ const handleSubmit = async (e) => {
                           recovery_key: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -268,7 +268,7 @@ const handleSubmit = async (e) => {
                           address_1: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -292,7 +292,7 @@ const handleSubmit = async (e) => {
                           city: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -314,7 +314,7 @@ const handleSubmit = async (e) => {
                           address_2: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -338,7 +338,7 @@ const handleSubmit = async (e) => {
                           country: e.target.value,
                         })
                       }
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#32bb6f] focus:border-[#32bb6f] block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 "
                       required={true}
                     />
                   </div>
@@ -371,7 +371,7 @@ const handleSubmit = async (e) => {
                  onClick={(e) => { // Ensure this line is added to prevent the default form submission behavior
                     handleSubmit(e);
                   }}
-                  className="w-full text-white bg-[#32bb6f] hover:bg-[#90e8b7] focus:ring-4 focus:ring-[#4fee97] font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                  className="w-full text-white bg-[#46b3f6] hover:bg-cyan-200 hover:text-[#6593ef]  focus:ring-4 focus:ring-[#4c99e7] font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                 >
                   Register
                 </button>
@@ -379,13 +379,13 @@ const handleSubmit = async (e) => {
                 {formData.error && (
                   <p className="text-red-500 text-sm mt-2">{formData.error}</p>
                 )}
-                <div className="text-sm font-medium text-[#32bb7f] ">
-                  Not registered?{" "}
+                <div className="text-sm font-medium text-white ">
+                  All ready registered?{" "}
                   <a
-                    href={"/register"}
-                    className="text-[#32bb6f] hover:underline "
+                    href={"/login"}
+                    className="text-white hover:underline "
                   >
-                    Create account
+                    Login
                   </a>
                 </div>
               </form>
