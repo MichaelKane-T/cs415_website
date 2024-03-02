@@ -12,6 +12,8 @@ const UserProfile = () => {
   const [infoColumns, setInfoColumns] = useState([]);
   const [info, setInfo] = useState([]);
   const [user, setUser] = useState([]);
+  const [name, setName] = useState([]);
+  const [lastName, setLastName] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [userAddress, setUserAddress] = useState([]);
   const [UserProfileBio, setUserProfileBio] = useState([]);
@@ -20,16 +22,18 @@ const UserProfile = () => {
   
   useEffect(() => {
     if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
-    fetch(process.env.REACT_APP_API_URL_BASE + "/users")
+    fetch(process.env.REACT_APP_API_URL_BASE + "/users/"+user_id)
       .then((res) => res.json())
       .then((data) => {
-        console.log("***********");
-        console.log(data.users);
-        console.log("***********");
+
+        if (data.user ) {
+          setName(data.user.first_name)
+          setLastName(data.user.second_name)
+              }
       })
         .catch((error) => console.error(error));
 
-  },[]);
+  },[navigate,user_id]);
   useEffect(() => {
     if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
 
@@ -43,7 +47,6 @@ const UserProfile = () => {
 
         if (data.info && data.info.length > 0) {
           // Access user_info_id from the first item in the info array
-         
           setInfo(data.info);
           setUser(data.info[0].user)
           setUserInfo(data.info[0].user_info_id)
@@ -91,41 +94,8 @@ const UserProfile = () => {
     navigate("/login");
   }
 
-  const Card = ({ title, data }) => {
-    return (
-      <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative z-10">
-        <h2 className="text-xl font-bold mb-4">{title}</h2>
-        <div className="flex grid-flow-row md:grid-flow-row lg:grid-flow-row gap-4">
-          {data.map((item, i) => (
-            <div
-              key={`${title.toLowerCase()}-card-${i}`}
-              className="bg-gradient-to-br from-lime-500 via-yellow-500 to-yellow-300 p-4 rounded-lg shadow-xl pl-3 hover:scale-105 duration-300 border border-green-400"
-            >
-              {Object.keys(item).map((key, j) => (
-                <div
-                  key={`${title.toLowerCase()}-card-${i}-${j}`}
-                  className="mb-2"
-                >
-                  <p className="font-bold text-black">
-                    {key.replaceAll("_", " ").toUpperCase()}
-                  </p>
-                  {/* Check if the value is an object or array, and handle it accordingly */}
-                  {typeof item[key] === "object" ? (
-                    // If it's an object or array, convert it to a string for display
-                    <p className="text-black">{JSON.stringify(item[key])}</p>
-                  ) : (
-                    // If it's a primitive type, display it directly
-                    <p className="text-black">{item[key]}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-  const UserCard = ({ title, data }) => {
+
+  const UserCard = () => {
   
   
     return (
@@ -142,14 +112,11 @@ const UserProfile = () => {
                       className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
                       alt="User Profile"
                     />
-                    <h1 className="text-xl font-bold">John Doe</h1>
-                    <p className="text-gray-700">Software Developer</p>
+                    <h1 className="text-xl font-bold">{name} {lastName}</h1>
+                    <p>{UserProfileBio}</p>
                     <div className="mt-6 flex flex-wrap gap-4 justify-center">
                       <a href="javascript:void(0)" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                        Contact
-                      </a>
-                      <a href="javascript:void(0)" className="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">
-                        Resume
+                        Update Info
                       </a>
                     </div>
                   </div>
@@ -157,11 +124,6 @@ const UserProfile = () => {
                   <div className="flex flex-col">
                     <span className="text-gray-700 uppercase font-bold tracking-wider mb-2">Skills</span>
                     <ul>
-                      <li className="mb-2">JavaScript</li>
-                      <li className="mb-2">React</li>
-                      <li className="mb-2">Node.js</li>
-                      <li className="mb-2">HTML/CSS</li>
-                      <li className="mb-2">Tailwind CSS</li>
                       <li className="mb-2">User ID: {userInfo}</li>
                       <li className="mb-2">User Address: {userInfo}</li>
                     </ul>
@@ -181,30 +143,16 @@ const UserProfile = () => {
   return (
     <div className="text-black px-8 flex flex-col justify-between">
       <UserCard/>
-  
-      <div className="w-screen h-screen overflow-hidden relative">
-        <div className="max-w-[1240px] mx-auto h-full flex flex-col justify-center items-center relative z-10">
-          <div className="flex flex-col md:flex-row justify-items-end gap-4">
-            <div className="flex row-span-1">
-              <Card title="User Info" data={info} />
-            </div>
-            <div className="flex row-span-1">
-              <Card title="Addresses" data={addresses} />
-              {/* Add the button at the bottom */}
-            </div>
-            {/* <div className="col-span-1">
-              <Card title="Phones" data={phones} />
-            </div> */}
-          </div>
-          <button
+
+      <button
             className="flex justify-center motion-safe:animate-bounce w-[200px] rounded-md font-medium my-6 mx-auto py-3 ring-1 ring-yellow-200 bg-lime-500 hover:bg-lime-300 hover:-translate-y-1 hover:scale-125 text-white hover:text-lime-700  px-4 hover:rounded transition ease-in-out delay-150 duration-300"
             onClick={handleLogout}
             key="logout-button"
           >
             Logout
           </button>
-        </div>
-      </div>
+  
+    
     </div>
   );
 };
