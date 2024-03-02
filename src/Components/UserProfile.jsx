@@ -145,7 +145,7 @@ const UserProfile = () => {
       <UserCard/>
 
       <button
-            className="flex justify-center motion-safe:animate-bounce w-[200px] rounded-md font-medium my-6 mx-auto py-3 ring-1 ring-yellow-200 bg-lime-500 hover:bg-lime-300 hover:-translate-y-1 hover:scale-125 text-white hover:text-lime-700  px-4 hover:rounded transition ease-in-out delay-150 duration-300"
+            className="flex justify-center w-[200px] rounded-md font-medium my-6 mx-auto py-3 ring-1 ring-cyan-200 bg-blue-500 hover:bg-blue-300 hover:-translate-y-1 hover:scale-125 text-white hover:text-blue-700  px-4 hover:rounded transition ease-in-out delay-150 duration-300"
             onClick={handleLogout}
             key="logout-button"
           >
