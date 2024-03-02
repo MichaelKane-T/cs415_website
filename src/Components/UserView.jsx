@@ -46,8 +46,8 @@ const UserView = () => {
                     className={`border-b ${
                       i % 2 === 0
                         ? "bg-neutral-50"
-                        : "bg-cyan-100 dark:bg-neutral-800"
-                    } text-neutral-800 dark:text-neutral-50`}
+                        : "bg-cyan-100 dark:bg-cyan-800"
+                    } text-neutral-800 dark:text-black-50`}
                   >
                     {columns.map((key, j) => (
                       <td key={j} className="whitespace-nowrap px-6 py-4">
