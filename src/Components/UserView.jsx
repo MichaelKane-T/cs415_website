@@ -1,55 +1,70 @@
-import React, {useState, useEffect} from 'react'
-import { useNavigate } from "react-router-dom"
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserView = () => {
-    const navigate = useNavigate();
-    const [columns, setColumns] = useState([]);
-    const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
+  const [columns, setColumns] = useState([
+    "user_id",
+    "first_name",
+    "second_name",
+    "pass_word",
+    "recovery_key",
+    "date_created",
+    "email",
+  ]);
+  const [records, setRecords] = useState([]);
 
-
-    useEffect(() => {
-        if (!window.sessionStorage.getItem("auth")) navigate('/unauthorized')
-        fetch( process.env.REACT_APP_API_URL_BASE +'/users')
-        .then(res => res.json())
-        .then(data => {
-            setColumns(Object.keys(data.users[0]))
-            setRecords(data.users)
-        })
-        .catch(error => console.error(error));
-    }, [navigate]);
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("auth")) navigate("/unauthorized");
+    fetch(process.env.REACT_APP_API_URL_BASE + "/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setRecords(data.users);
+      })
+      .catch((error) => console.error(error));
+  }, [navigate]);
 
   return (
-    <div>
-        <h2>Users</h2>
-        <table className='table'>
-            <thead>
+    <div className="flex flex-col">
+      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div className="overflow-hidden">
+            <table className="min-w-full text-center text-sm font-light p-2">
+              <thead className="border-b font-medium dark:border-neutral-500">
                 <tr>
-                    {columns.map((c, i) => (
-                        <th key={i}>{c.replaceAll("_", " ").toUpperCase()}</th>
-                    ))}
+                  {columns.map((c, i) => (
+                    <th key={i} className="px-6 py-4 bg-slate-400">
+                      {c.replaceAll("_", " ").toUpperCase()}
+                    </th>
+                  ))}
                 </tr>
-            </thead>
-            <tbody>
-                {
-                    records.map((record,i) => (
-                        <tr key={i}>
-                            <td>{record.user_id}</td>
-                            <td>{record.first_name}</td>
-                            <td>{record.last_name}</td>
-                            <td>{record.email}</td>
-                            <td className="hidetext">{record.pass_word}</td>
-                            <td>{record.created_date}</td>
-                            <td>{record.is_active}</td>
-                            <td>{record.last_login}</td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
-
+              </thead>
+              <tbody>
+                {records.map((record, i) => (
+                  <tr
+                    key={i}
+                    className={`border-b ${
+                      i % 2 === 0
+                        ? "bg-neutral-50"
+                        : "bg-cyan-100 dark:bg-neutral-800"
+                    } text-neutral-800 dark:text-neutral-50`}
+                  >
+                    {columns.map((key, j) => (
+                      <td key={j} className="whitespace-nowrap px-6 py-4">
+                        {key === "pass_word" || key === "recovery_key"
+                          ? `******${record[key].slice(-2)}`
+                          : record[key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserView
+export default UserView;
